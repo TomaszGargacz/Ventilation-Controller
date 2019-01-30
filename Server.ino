@@ -20,8 +20,6 @@ int threshold;
 int error;
 int operatingMode = 0; //0 auto, 1 ręczny
 int state = 0; //0 wylaczony, 1 wlaczony
-//int statestat = 0;
-//int operatingModestat = 0;
 String fanState = "Nieustalony";
 String currentMode = "Nieustalony";
 

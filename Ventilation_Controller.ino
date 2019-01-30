@@ -32,11 +32,11 @@ unsigned int currentTime = 0;    //   __\ do obsługi
 unsigned int rememberedTime = 0; //     / wielowątkowości
 String command_toSend;
 
-void Wyslij(){ //wysyłanie komendy w protokole UDP
-   char wyslij_komenda[command_toSend.length()+1];
-   command_toSend.toCharArray(wyslij_komenda, command_toSend.length()+1);
+void Send(){ //wysyłanie komendy w protokole UDP
+   char send_command[command_toSend.length()+1];
+   command_toSend.toCharArray(send_command, command_toSend.length()+1);
    Udp.beginPacket(server_ip, server_port);
-   Udp.write(wyslij_komenda); 
+   Udp.write(send_command); 
    Udp.endPacket();
 }
 
@@ -138,22 +138,22 @@ currentTime = millis();
 
     if(operatingMode==1){
       command_toSend = "r";
-      Wyslij(); 
+      Send(); 
     }
   
     if(operatingMode==0){
       command_toSend = "a";
-      Wyslij();  
+      Send();  
     }
 
     if(digitalRead(RELAY)==HIGH){
       command_toSend = "n";
-      Wyslij(); 
+      Send(); 
     }
 
     if(digitalRead(RELAY)==LOW){
       command_toSend = "y";
-      Wyslij(); 
+      Send(); 
     }
 
       if(p==40){command_toSend = "p=40";}
@@ -161,7 +161,7 @@ currentTime = millis();
       if(p==60){command_toSend = "p=60";}
       if(p==70){command_toSend = "p=70";}
       if(p==80){command_toSend = "p=80";}
-      Wyslij();
+      Send(); 
 
       if(h==1){command_toSend = "h=1";}
       if(h==2){command_toSend = "h=2";}
@@ -172,7 +172,7 @@ currentTime = millis();
       if(h==7){command_toSend = "h=7";}
       if(h==8){command_toSend = "h=8";}
       if(h==9){command_toSend = "h=9";}
-      Wyslij();
+      Send(); 
   }
 
   if(operatingMode==1){ //tryb ręczny
